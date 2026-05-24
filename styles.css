@@ -54,7 +54,7 @@ header .links a:hover {
 .score-board {
     border: 1px solid black;
     border-radius: 10px;
-    width: 300px;
+    width: 400px;
 }
 
 .score, .round {

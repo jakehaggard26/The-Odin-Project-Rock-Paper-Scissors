@@ -1,6 +1,6 @@
 let playerScore = 0;
 let computerScore = 0;
-let roundNum = 0;
+let roundNum = 1;
 
 const rockBtn = document.querySelector("#rock");
 rockBtn.addEventListener("click", () => updateGame("rock"));
@@ -13,7 +13,15 @@ scissorsBtn.addEventListener("click", () => updateGame("scissors"));
 
 function updateScoreBoardText() {
     const round = document.querySelector("#round");
-    round.textContent = `Round ${roundNum}`
+
+    if(roundNum > 5)
+    {
+         round.textContent = `Game Over. To play just select an option below.`
+    }
+    else
+    {
+        round.textContent = `Round ${roundNum}`
+    }
     
     const score = document.querySelector("#score");
     score.textContent = `Your Score: ${playerScore} vs Computer Score ${computerScore}`;
@@ -47,14 +55,14 @@ function updateGame(playerInput) {
         // if computer picks paper (Loss)
         else if(computerInput == "paper")
         {
-            console.log(`Round ${roundNum}: Player Loss. Paper (computer) beats Rock (player)`);
+            console.log(`Round ${roundNum}: Player Loss. ${computerInput} (computer) beats ${playerInput} (player)`);
             computerScore++;
         }
 
         // if computer picks scissors (Win)
         else 
         {
-            console.log(`Round ${roundNum}: Player Win. Rock (computer) beats Scissors (player)`);
+            console.log(`Round ${roundNum}: Player Win. ${playerInput} (player) beats ${computerInput} (computer)`);
             playerScore++;
         }
             
@@ -66,20 +74,20 @@ function updateGame(playerInput) {
         // if computer picks rock (Win)
         if(computerInput == "rock")
         {
-            console.log(`Round ${roundNum}: Player Win. Paper (player) beats paper (computer)`);
+            console.log(`Round ${roundNum}: Player Win. ${playerInput} (player) beats ${computerInput} (computer)`);
             playerScore++;
         }
 
         // if computer picks paper (Draw)
         else if(computerInput == "paper")
         {
-            console.log(`Round ${roundNum}: Draw. Both picked Paper`)
+            console.log(`Round ${roundNum}: Draw. Both picked Paper`);
         }
 
         // if computer picks scissors (Loss)
         else 
         {
-            console.log(`Round ${roundNum}: Scissors (computer) beats Paper (player)`)
+            console.log(`Round ${roundNum}: Player Loss. ${computerInput} (computer) beats ${playerInput} (player)`);
             computerScore++;
         }
 
@@ -89,10 +97,25 @@ function updateGame(playerInput) {
     else
     {
         // if computer picks rock (Loss)
+        if(computerInput == "rock")
+        {
+            console.log(`Round ${roundNum}: Player Loss. ${computerInput} (computer) beats ${playerInput} (player)`);
+            computerScore++;
+        }
 
         // if computer picks paper (Win)
+        else if(computerInput == "paper")
+        {
+            console.log(`Round ${roundNum}: Player Win. ${playerInput} (player) beats ${computerInput} (computer)`);
+            playerScore++;
+
+        }
 
         // if computer picks scissors (Draw)
+        else 
+        {
+            console.log(`Round ${roundNum}: Draw. Both picked Scissors`);
+        }
         
     }
 
