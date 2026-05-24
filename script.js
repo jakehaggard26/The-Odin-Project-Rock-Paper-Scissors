@@ -27,14 +27,31 @@ function updateScoreBoardText() {
     score.textContent = `Your Score: ${playerScore} vs Computer Score ${computerScore}`;
 }
 
+function updateGameLog(str)
+{
+    const gameLog = document.querySelector("#game-log");
+    const log = document.createElement("p");
+    log.textContent = str;
+    gameLog.appendChild(log);
+}
+
 function resetGame()
 {
     humanScore = 0;
     computerScore = 0;
     roundNum = 1;
+    
+    
+    // const gameLog = document.querySelector("#game-log");
+    // for(const c of gameLog.children)
+    // {
+    //     gameLog.removeChild(c);
+    // }
 }
 
-function updateGame(playerInput) {
+function updateGame(playerInput) 
+{
+    let gameString = "";
 
     // Generate Computer Pick
     let computerInput = generateComputerPick(); 
@@ -49,20 +66,20 @@ function updateGame(playerInput) {
         // if computer picks rock (Draw)
         if(computerInput == "rock") 
         {
-            console.log(`Round ${roundNum}: Draw. Both picked Rock`);
+           gameString = `Round ${roundNum}: Draw. Both picked Rock`;
         }
         
         // if computer picks paper (Loss)
         else if(computerInput == "paper")
         {
-            console.log(`Round ${roundNum}: Player Loss. ${computerInput} (computer) beats ${playerInput} (player)`);
+            gameString = `Round ${roundNum}: Player Loss. ${computerInput} (computer) beats ${playerInput} (player)`;
             computerScore++;
         }
 
         // if computer picks scissors (Win)
         else 
         {
-            console.log(`Round ${roundNum}: Player Win. ${playerInput} (player) beats ${computerInput} (computer)`);
+            gameString = `Round ${roundNum}: Player Win. ${playerInput} (player) beats ${computerInput} (computer)`;
             playerScore++;
         }
             
@@ -74,20 +91,20 @@ function updateGame(playerInput) {
         // if computer picks rock (Win)
         if(computerInput == "rock")
         {
-            console.log(`Round ${roundNum}: Player Win. ${playerInput} (player) beats ${computerInput} (computer)`);
+            gameString = `Round ${roundNum}: Player Win. ${playerInput} (player) beats ${computerInput} (computer)`;
             playerScore++;
         }
 
         // if computer picks paper (Draw)
         else if(computerInput == "paper")
         {
-            console.log(`Round ${roundNum}: Draw. Both picked Paper`);
+            gameString = `Round ${roundNum}: Draw. Both picked Paper`;
         }
 
         // if computer picks scissors (Loss)
         else 
         {
-            console.log(`Round ${roundNum}: Player Loss. ${computerInput} (computer) beats ${playerInput} (player)`);
+            gameString = `Round ${roundNum}: Player Loss. ${computerInput} (computer) beats ${playerInput} (player)`;
             computerScore++;
         }
 
@@ -99,14 +116,14 @@ function updateGame(playerInput) {
         // if computer picks rock (Loss)
         if(computerInput == "rock")
         {
-            console.log(`Round ${roundNum}: Player Loss. ${computerInput} (computer) beats ${playerInput} (player)`);
+            gameString = `Round ${roundNum}: Player Loss. ${computerInput} (computer) beats ${playerInput} (player)`;
             computerScore++;
         }
 
         // if computer picks paper (Win)
         else if(computerInput == "paper")
         {
-            console.log(`Round ${roundNum}: Player Win. ${playerInput} (player) beats ${computerInput} (computer)`);
+            gameString = `Round ${roundNum}: Player Win. ${playerInput} (player) beats ${computerInput} (computer)`;
             playerScore++;
 
         }
@@ -114,7 +131,7 @@ function updateGame(playerInput) {
         // if computer picks scissors (Draw)
         else 
         {
-            console.log(`Round ${roundNum}: Draw. Both picked Scissors`);
+           gameString = `Round ${roundNum}: Draw. Both picked Scissors`;
         }
         
     }
@@ -122,6 +139,10 @@ function updateGame(playerInput) {
     // Increment Round Number
     roundNum++;
     
+    // Update Game Log
+    console.log(gameString);
+    updateGameLog(gameString);
+
     // Update Scoreboard
     updateScoreBoardText();
 
