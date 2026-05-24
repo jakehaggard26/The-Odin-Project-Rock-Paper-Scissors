@@ -1,6 +1,6 @@
 let playerScore = 0;
 let computerScore = 0;
-let roundNum = 1;
+let roundNum = 0;
 
 const rockBtn = document.querySelector("#rock");
 rockBtn.addEventListener("click", () => updateGame("rock"));
@@ -14,6 +14,7 @@ scissorsBtn.addEventListener("click", () => updateGame("scissors"));
 function updateScoreBoardText() {
     const round = document.querySelector("#round");
     round.textContent = `Round ${roundNum}`
+    
     const score = document.querySelector("#score");
     score.textContent = `Your Score: ${playerScore} vs Computer Score ${computerScore}`;
 }
@@ -40,20 +41,20 @@ function updateGame(playerInput) {
         // if computer picks rock (Draw)
         if(computerInput == "rock") 
         {
-            console.log("Draw. Both players picked Rock");
+            console.log(`Round ${roundNum}: Draw. Both picked Rock`);
         }
         
         // if computer picks paper (Loss)
         else if(computerInput == "paper")
         {
-            console.log("Player Loss. Paper (computer) beats Rock (player)");
+            console.log(`Round ${roundNum}: Player Loss. Paper (computer) beats Rock (player)`);
             computerScore++;
         }
 
         // if computer picks scissors (Win)
         else 
         {
-            console.log("Player Win. Rock (computer) beats Scissors (player)");
+            console.log(`Round ${roundNum}: Player Win. Rock (computer) beats Scissors (player)`);
             playerScore++;
         }
             
@@ -63,10 +64,24 @@ function updateGame(playerInput) {
     else if(playerInput == 'paper')
     {
         // if computer picks rock (Win)
+        if(computerInput == "rock")
+        {
+            console.log(`Round ${roundNum}: Player Win. Paper (player) beats paper (computer)`);
+            playerScore++;
+        }
 
         // if computer picks paper (Draw)
+        else if(computerInput == "paper")
+        {
+            console.log(`Round ${roundNum}: Draw. Both picked Paper`)
+        }
 
         // if computer picks scissors (Loss)
+        else 
+        {
+            console.log(`Round ${roundNum}: Scissors (computer) beats Paper (player)`)
+            computerScore++;
+        }
 
     }
     
@@ -92,7 +107,7 @@ function updateGame(playerInput) {
     //{
         //resetGame();
     //}
-// }
+}
 
 function generateComputerPick()
 {
