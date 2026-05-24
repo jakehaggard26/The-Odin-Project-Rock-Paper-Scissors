@@ -1,6 +1,7 @@
 let playerScore = 0;
 let computerScore = 0;
 let roundNum = 1;
+let gameWinnerStr = "";
 
 const rockBtn = document.querySelector("#rock");
 rockBtn.addEventListener("click", () => updateGame("rock"));
@@ -11,12 +12,37 @@ paperBtn.addEventListener("click", () => updateGame("paper"));
 const scissorsBtn = document.querySelector("#scissors");
 scissorsBtn.addEventListener("click", () => updateGame("scissors"));
 
+function resetScoreBoardText()
+{
+    const round = document.querySelector("#round");
+    round.textContent = `Round ${roundNum}`
+    
+    const score = document.querySelector("#score");
+    score.textContent = `Your Score: ${playerScore} vs Computer Score ${computerScore}`;
+
+}
+
 function updateScoreBoardText() {
+    
     const round = document.querySelector("#round");
 
+    if(playerScore > computerScore)
+    {
+        gameWinnerStr = "Player Wins!";
+    }
+    else if(computerScore > playerScore)
+    {
+        gameWinnerStr = "Computer Wins!";
+    }
+    else
+    {
+        gameWinnerStr = "Draw!"
+    }
+    
+    
     if(roundNum > 5)
     {
-         round.textContent = `Game Over. To play just select an option below.`
+         round.textContent = "Game Over. " + gameWinnerStr + " To play just select an option below and begin Round 1."
     }
     else
     {
@@ -37,21 +63,34 @@ function updateGameLog(str)
 
 function resetGame()
 {
-    humanScore = 0;
+    playerScore = 0;
     computerScore = 0;
     roundNum = 1;
     
     
-    // const gameLog = document.querySelector("#game-log");
-    // for(const c of gameLog.children)
-    // {
-    //     gameLog.removeChild(c);
-    // }
+    const gameLog = document.querySelector("#game-log");
+    elements = gameLog.querySelectorAll("p");
+    console.log(elements)
+    elements.forEach(element => {
+    element.remove();
+    });
+
+    const round = document.querySelector("#round");
+    round.textContent = `Round ${roundNum}`
+    
+    const score = document.querySelector("#score");
+    score.textContent = `Your Score: ${playerScore} vs Computer Score ${computerScore}`;
 }
 
 function updateGame(playerInput) 
 {
     let gameString = "";
+
+    // Round Check (If max rounds reached, reset the game)
+    if(roundNum > 5)
+    {
+        resetGame();
+    }
 
     // Generate Computer Pick
     let computerInput = generateComputerPick(); 
@@ -146,11 +185,6 @@ function updateGame(playerInput)
     // Update Scoreboard
     updateScoreBoardText();
 
-    // Round Check (If max rounds reached, reset the game)
-    // if(roundNum > 5)
-    //{
-        //resetGame();
-    //}
 }
 
 function generateComputerPick()
