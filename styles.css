@@ -42,3 +42,17 @@ header .links a:hover {
     text-align: center;
     max-width: 600px;
 }
+
+.score {
+    text-align: center;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+}
+
+button {
+    margin: 0px 16px;
+    padding: 4px 8px;
+}
