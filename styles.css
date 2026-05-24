@@ -43,7 +43,21 @@ header .links a:hover {
     max-width: 600px;
 }
 
-.score {
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 32px;
+}
+
+.score-board {
+    border: 1px solid black;
+    border-radius: 10px;
+    width: 300px;
+}
+
+.score, .round {
     text-align: center;
 }
 
