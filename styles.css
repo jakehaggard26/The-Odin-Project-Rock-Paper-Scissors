@@ -1,12 +1,22 @@
 body {
+    padding: 0px 0px;
+    margin: 0px 0px;
+}
+
+header, .instructions {
     padding: 0px 64px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 header {
+
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    background-color: #f2f2f2;
 }
 
 header .links {
@@ -24,4 +34,11 @@ header .links a {
 
 header .links a:hover {
     opacity: .8;
+    color: darkgray
+}
+
+.instructions p {
+    font-size: 18px;
+    text-align: center;
+    max-width: 600px;
 }
